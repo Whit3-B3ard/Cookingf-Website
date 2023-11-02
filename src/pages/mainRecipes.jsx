@@ -67,6 +67,14 @@ export default function MainRecipes() {
   
     return (
    <Layout>
+    <div className="w-full h-2/4 bg-black flex">
+    <div className='flex justify-start flex-1'>
+      <img src="https://www.markwellfoods.com.au/wp-content/uploads/2022/07/shutterstock_1345559753-scaled.jpg" className="h-full" alt="" />
+    </div>
+    <div className='flex justify-end flex-1'>
+      <img src="https://info.ehl.edu/hubfs/Brand_Experience_Header.jpg" className="h-full" alt="" />
+    </div>
+  </div>
     <Header />
     <SearchBar onChange={handlerSearch} ingredients={ingredients} handlerSelectIngredient={handlerSelectIngredient}/>
     <Meals meals={meals}/>
