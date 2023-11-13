@@ -1,14 +1,20 @@
-
+import { UserContext } from './pages/registrationForm';
+import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainRecipes from "./pages/mainRecipes";
 import App from './App';
 import Navigation from './components/navigation';
 import Meal from './pages/meal';
 import NewsLetter from './pages/newsLetter';
+import RegistrationForm from './pages/registrationForm';
+
 
 export default function routes() {
-   
+  const [users, setUsers] = useState([]); 
+
+
   return (
+    <UserContext.Provider value={{ users, setUsers }}>
     <>
     <BrowserRouter>
     <Navigation />
@@ -18,9 +24,11 @@ export default function routes() {
         <Route path="/main-recipes" element={<MainRecipes />} />
         <Route path="/meal" element={<Meal />}/>
         <Route path="/newsLetter" element={<NewsLetter />} />
+        <Route path='/register' element={<RegistrationForm />} />
       </Routes>
       
       </BrowserRouter>
      </>
+     </UserContext.Provider>
   )
 }
