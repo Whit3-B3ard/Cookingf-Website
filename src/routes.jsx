@@ -25,6 +25,7 @@ export default function routes() {
         <Route path="/meal" element={<Meal />}/>
         <Route path="/newsLetter" element={<NewsLetter />} />
         <Route path='/register' element={<RegistrationForm />} />
+
       </Routes>
       
       </BrowserRouter>
