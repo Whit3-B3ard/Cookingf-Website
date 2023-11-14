@@ -11,11 +11,11 @@ import SignIn from './components/signin';
 
 
 export default function routes() {
-  const [users, setUsers] = useState([]); 
+  // const [users, setUsers] = useState([]); 
 
 
   return (
-    <UserContext.Provider value={{ users, setUsers }}>
+    // <UserContext.Provider value={{ users, setUsers }}>
     <>
     <BrowserRouter>
     <Navigation />
@@ -31,6 +31,6 @@ export default function routes() {
       
       </BrowserRouter>
      </>
-     </UserContext.Provider>
+    //  </UserContext.Provider>
   )
 }
