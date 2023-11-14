@@ -17,7 +17,7 @@ const RegistrationForm = () => {
   const {setUserState} = useContext(UserContext);
 // console.log('context is', setUserState)
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e) => {    
     const { name, value, type, checked } = e.target;
     const inputValue = type === 'checkbox' ? checked : value;
 
