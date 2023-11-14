@@ -1,18 +1,21 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../pages/registrationForm';
 export default function Navigation() {
+  const userContext=useContext(UserContext)
   return (
     <>
     <nav id="header" class="fixed w-full z-30 top-0 text-white bg-gradient-to-r from-blue-500 to-purple-500">
       <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div class="pl-4 flex items-center">
           
-          <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl flex" href="#">
+          <Link  to ="/"class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl flex">
             <div className='mr-4'>
           
             <img src="https://cdn-icons-png.flaticon.com/512/45/45552.png" alt="" className='h-10 w-10' />
             </div>
             <Link to="/">The F Word</Link>
-          </a>
+          </Link>
           
         </div>
         <div class="block lg:hidden pr-4">
@@ -26,13 +29,14 @@ export default function Navigation() {
         <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
           <ul class="list-reset lg:flex justify-end flex-1 items-center">
             <li class="mr-3">
-              <a class="inline-block py-2 px-4 text-white font-bold no-underline" href="#">Register</a>
+              {userContext.authenticated?  <span>Welcome, {userContext.currentUser.name}!</span>:
+              <Link  to="/register" class="inline-block py-2 px-4 text-white font-bold no-underline" >Register</Link>}
             </li>
             <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">Contact Us</a>
+              <Link to="/" class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">Contact Us</Link>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">Jobs</a>
+              <Link to= "/"class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4">Jobs</Link>
             </li>
           </ul>
           <button

@@ -1,12 +1,39 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  //const [email, setEmail] = useState("");
+  //const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
- 
+  const navigate = useNavigate();
+
+  const handleSignIn = (e) => {
+    e.perventDefault();
+    const body = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+
+    console.log(body);
+    // find the user
+    // const user = usersLocal.find(u=> u.email == email && u.password == password)
+
+    // currentUser(user)
+    /*const storeEmail = localStorage.getItem("email");
+    console.log(storeEmail);
+    const storePassword = localStorage.getItem("password");
+    if (email.toLowerCase() === storeEmail && storePassword === password) {
+      if (rememberMe) {
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+      }
+      navigate("/");
+    } else {
+      console.log("Incorrect email or password");
+    }*/
+  };
 
   return (
     <div>
@@ -29,7 +56,7 @@ function SignIn() {
       <main className="absolute w-1/4 h-3/5 top-52 left-1/2 transform -translate-x-1/2 bg-slate-800 rounded-3xl shadow-lg flex flex-col text-white">
         <div className="flex h-1/3 flex-col items-center">
           <h1 className="mt-8 text-2xl font-bold">Sign In</h1>
-          <div className="mt-8 flex gap-8 text-4xl">
+          <div className="mt-8 flex flex-wrap gap-8 text-4xl">
             <i className="fa-brands fa-facebook fa-bounce text-blue-600 cursor-pointer"></i>
             <i className="fa-brands fa-apple fa-bounce text-blue-900 cursor-pointer"></i>
             <i className="fa-brands fa-google fa-bounce text-red-600 cursor-pointer"></i>
@@ -37,18 +64,23 @@ function SignIn() {
         </div>
         <div className="flex h-1/3 flex-col items-center">
           <input
+            name="email"
             type="email"
             placeholder="Email"
-            className="border border-gray-400  w-3/4 h-10 rounded pl-4 focus:border-pink-500 outline-none"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            className="border border-gray-400 text-black w-3/4 h-10 rounded pl-4 focus:border-pink-500 outline-none"
+            //value={email}
+            //onChange={(e) => {
+            //console.log("EMAIL INPUT CHANGED TO:", e.target.value),
+            //     setEmail(e.target.value);
+            //}}
           />
           <input
+            name="password"
             type="password"
             placeholder="Password"
             className="border border-gray-400 w-3/4 h-10 rounded mt-8 pl-4 focus:border-pink-500 outline-none"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            // value={password}
+            // onChange={(e) => setPassword(e.target.value)}
           />
           <div className="flex mt-8 gap-4 items-center">
             <div className="check">
@@ -65,8 +97,8 @@ function SignIn() {
           </div>
         </div>
         <div className="flex flex-col h-1/3 items-center justify-center">
-        <button className="sign-in-button mt-4 h-8 w-1/2 rounded-2xl bg-gradient-to-r from-slate-800 to-red-500 w-90 text text-white" >
-           <Link to="/">Sign-in</Link>
+          <button className="sign-in-button mt-4 h-8 w-1/2 rounded-2xl bg-red-500 w-90 text text-white">
+            <Link to="/">Sign-in</Link>
           </button>
           <div className="divider flex items-center mt-2">
             <div className="w-24 h-1 bg-gray mx-2"></div>
@@ -75,9 +107,12 @@ function SignIn() {
             </h1>
             <div className="w-24 h-1 bg-gray mx-2"></div>
           </div>
-          <button className="sign-up-button bg-gradient-to-r from-slate-800 to-red-500 mt-4 h-8 w-1/2 text text-white rounded-2xl">
+          <button
+            className="sign-up-button bg-red-500 mt-4 mb-8 h-8 w-1/2 text text-white rounded-2xl"
+            onClick={handleSignIn}
+          >
             {" "}
-            <Link to="/RegistrationForm">Sign Up</Link>
+            <Link to="/register">Sign Up</Link>
           </button>
         </div>
       </main>
