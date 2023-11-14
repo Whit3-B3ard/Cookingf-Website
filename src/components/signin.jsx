@@ -10,15 +10,25 @@ function SignIn() {
   const navigate = useNavigate();
 // this fix is from ibrahim
   const handleSignIn = (e) => {
-    e.perventDefault();
+    e.preventDefault();
     const body = {
       email: e.target.email.value,
       password: e.target.password.value,
     };
 
     console.log(body);
+
+    const usersString = localStorage.getItem("users")
+    if (usersString){
+      const users =Json.parse(usersString)
+      const user=users.find((item)=> item.email ==body.email && item.password==body.password)
+      if (rememberMe){
+        const currentUser =user.name
+        navigate("/")
+      }else console.log("Incorrect email or password")
+    }
     // find the user
-    // const user = usersLocal.find(u=> u.email == email && u.password == password)
+    //const user = usersLocal.find(u=> u.email == email && u.password == password)
 
     // currentUser(user)
     /*const storeEmail = localStorage.getItem("email");
@@ -78,7 +88,7 @@ function SignIn() {
             name="password"
             type="password"
             placeholder="Password"
-            className="border border-gray-400 w-3/4 h-10 rounded mt-8 pl-4 focus:border-pink-500 outline-none"
+            className="border  text-black border-gray-400 w-3/4 h-10 rounded mt-8 pl-4 focus:border-pink-500 outline-none"
             // value={password}
             // onChange={(e) => setPassword(e.target.value)}
           />
