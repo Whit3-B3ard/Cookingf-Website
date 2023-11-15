@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function SignIn() {
-  //const [email, setEmail] = useState("");
-  //const [password, setPassword] = useState("");
+  
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
-// this fix is from ibrahim
+  //userContext= useContext(userContext)
+
   const handleSignIn = (e) => {
     e.preventDefault();
     const body = {
@@ -18,31 +18,18 @@ function SignIn() {
 
     console.log(body);
 
-    const usersString = localStorage.getItem("users")
+    const usersString = localStorage.getItem("user")
     if (usersString){
-      const users =Json.parse(usersString)
+      const users =JSON.parse(usersString)
       const user=users.find((item)=> item.email ==body.email && item.password==body.password)
       if (rememberMe){
         const currentUser =user.name
         navigate("/")
-      }else console.log("Incorrect email or password")
+      }else console.log("check 'remember me'or Incorrect email or password")
+    }else {
+      console.log("User not found");
     }
-    // find the user
-    //const user = usersLocal.find(u=> u.email == email && u.password == password)
 
-    // currentUser(user)
-    /*const storeEmail = localStorage.getItem("email");
-    console.log(storeEmail);
-    const storePassword = localStorage.getItem("password");
-    if (email.toLowerCase() === storeEmail && storePassword === password) {
-      if (rememberMe) {
-        localStorage.setItem("email", email);
-        localStorage.setItem("password", password);
-      }
-      navigate("/");
-    } else {
-      console.log("Incorrect email or password");
-    }*/
   };
 
   return (
