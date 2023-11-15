@@ -62,7 +62,7 @@ const Navigation = () => {
                     </Link>
                   </li>
                   <li className="mr-3">
-                    <Link to="/" className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
+                    <Link to="/contact" className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
                       Contact Us
                     </Link>
                   </li>

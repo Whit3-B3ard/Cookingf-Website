@@ -31,6 +31,8 @@ const RegistrationForm = () => {
     e.preventDefault()
     const newUser = { ...formData };
 
+    localStorage.setItem('user', JSON.stringify(newUser))
+
     setUserState({...newUser})
 
     if (formData.logMeIn) navigate('/')
