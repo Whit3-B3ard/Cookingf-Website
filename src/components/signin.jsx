@@ -1,38 +1,37 @@
 import React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useState,useContext } from "react";
+import { Link, useNavigate} from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 function SignIn() {
-  //const [email, setEmail] = useState("");
-  //const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
-// this fix is from ibrahim
+  const { userState, setUserState } = useContext(UserContext);
   const handleSignIn = (e) => {
     e.perventDefault();
-    const body = {
-      email: e.target.email.value,
-      password: e.target.password.value,
-    };
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-    console.log(body);
-    // find the user
-    // const user = usersLocal.find(u=> u.email == email && u.password == password)
+    if (email === userState.email && password === userState.password) {
+     
+      setUserState((prevState) => ({
+        ...prevState,
+        name: prevState.name, 
+        isAuthenticated: true,
+      }));
 
-    // currentUser(user)
-    /*const storeEmail = localStorage.getItem("email");
-    console.log(storeEmail);
-    const storePassword = localStorage.getItem("password");
-    if (email.toLowerCase() === storeEmail && storePassword === password) {
-      if (rememberMe) {
-        localStorage.setItem("email", email);
-        localStorage.setItem("password", password);
-      }
-      navigate("/");
-    } else {
+      navigate('/');
+    }else {
+     
       console.log("Incorrect email or password");
-    }*/
+    }
+  
+
+
+
+
+
+    
   };
 
   return (
@@ -68,19 +67,14 @@ function SignIn() {
             type="email"
             placeholder="Email"
             className="border border-gray-400 text-black w-3/4 h-10 rounded pl-4 focus:border-pink-500 outline-none"
-            //value={email}
-            //onChange={(e) => {
-            //console.log("EMAIL INPUT CHANGED TO:", e.target.value),
-            //     setEmail(e.target.value);
-            //}}
+            //onChange={handleInputChange}
           />
           <input
             name="password"
             type="password"
             placeholder="Password"
             className="border text-black border-gray-400 w-3/4 h-10 rounded mt-8 pl-4 focus:border-pink-500 outline-none"
-            // value={password}
-            // onChange={(e) => setPassword(e.target.value)}
+            //onChange={handleInputChange}
           />
           <div className="flex mt-8 gap-4 items-center">
             <div className="check">

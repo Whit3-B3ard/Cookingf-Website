@@ -17,7 +17,7 @@ const RegistrationForm = () => {
   const {setUserState} = useContext(UserContext);
 // console.log('context is', setUserState)
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e) => {    
     const { name, value, type, checked } = e.target;
     const inputValue = type === 'checkbox' ? checked : value;
 
@@ -30,6 +30,8 @@ const RegistrationForm = () => {
   const handleRegistration = (e) => {
     e.preventDefault()
     const newUser = { ...formData };
+
+    localStorage.setItem('user', JSON.stringify(newUser))
 
     setUserState({...newUser})
 

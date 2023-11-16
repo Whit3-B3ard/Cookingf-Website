@@ -124,7 +124,7 @@ const Navigation = () => {
                     </Link>
                   </li>
                   <li className="mr-3">
-                    <Link to="/" className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
+                    <Link to="/contact" className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
                       Contact Us
                     </Link>
                   </li>
@@ -137,7 +137,7 @@ const Navigation = () => {
               id="navAction"
               className="mx-auto lg:mx-0 hover:underline bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
             >
-              {userState?.name ? 'Log Out' : 'Sign In'}
+              {userState?.name ? 'Log Out' : <Link to="/signin">'Sign In'</Link>}
             </button>
                 </>
               )}
