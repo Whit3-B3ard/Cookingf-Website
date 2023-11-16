@@ -24,10 +24,6 @@ function SignIn() {
       const users = JSON.parse(usersString);
       console.log("uses:", users);
      if (users.email == body.email && users.password== body.password)   
-     
-     /* const user = users.find(
-        (item) => item.email == body.email && item.password == body.password
-      );*/
       if (rememberMe) {
         const currentUser = users.name;
         setRememberMe(!rememberMe);
@@ -39,7 +35,7 @@ function SignIn() {
   };
 
   return (
-    <div>
+    <form onSubmit={handleSignIn}>
       <div className="w-full h-2/4 bg-black flex">
         <div className="flex justify-start flex-1">
           <img
@@ -112,15 +108,21 @@ function SignIn() {
           </div>
           <button
             className="sign-up-button bg-red-500 mt-4 mb-8 h-8 w-1/2 text text-white rounded-2xl"
-            onClick={handleSignIn}
+            type="submit"
           >
             {" "}
             <Link to="/register">Sign Up</Link>
           </button>
         </div>
       </main>
-    </div>
+    </form>
   );
 }
 
 export default SignIn;
+/**
+ * 
+ *   const user = users.find(
+        (item) => item.email == body.email && item.password == body.password
+      )
+ */
