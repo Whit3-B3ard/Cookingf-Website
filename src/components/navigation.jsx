@@ -11,6 +11,7 @@ const Navigation = () => {
   const dropdownRef = useRef(null);
 
   const handleLogout = () => {
+
     // userContext.setAuthenticated(false);
     // userContext.setCurrentUser(null);
     navigate('/');
@@ -34,6 +35,7 @@ const Navigation = () => {
     };
   }, []);
 
+
   return (
     <>
       <nav
@@ -45,6 +47,8 @@ const Navigation = () => {
             <Link to="/" className="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl flex">
               <div className="mr-4">
                 <img src="https://cdn-icons-png.flaticon.com/512/45/45552.png" alt="" className="h-10 w-10" />
+
+
               </div>
               The F Word
             </Link>
@@ -61,6 +65,7 @@ const Navigation = () => {
             </button>
           </div>
           <div className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
+
             <ul className="list-reset lg:flex justify-end flex-1 items-center">
               {userState?.name ? (
                 <>
@@ -120,11 +125,14 @@ const Navigation = () => {
                 <>
                   <li className="mr-3">
                     <Link to="/register" className="inline-block py-2 px-4 text-white font-bold no-underline">
+
                       Register
                     </Link>
                   </li>
                   <li className="mr-3">
+
                     <Link to="/contact" className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">
+
                       Contact Us
                     </Link>
                   </li>
@@ -133,16 +141,20 @@ const Navigation = () => {
                       Jobs
                     </Link>
                   </li>
+
                   <button
+
               id="navAction"
               className="mx-auto lg:mx-0 hover:underline bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
             >
               {userState?.name ? 'Log Out' : <Link to="/signin">Sign In</Link>}
             </button>
+
                 </>
               )}
             </ul>
             
+
           </div>
         </div>
         <hr className="border-b border-gray-100 opacity-25 my-0 py-0" />
@@ -152,3 +164,4 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
