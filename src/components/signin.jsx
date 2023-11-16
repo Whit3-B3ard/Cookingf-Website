@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function SignIn() {
-  
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   //userContext= useContext(userContext)
@@ -18,18 +17,25 @@ function SignIn() {
 
     console.log(body);
 
-    const usersString = localStorage.getItem("user")
-    if (usersString){
-      const users =JSON.parse(usersString)
-      const user=users.find((item)=> item.email ==body.email && item.password==body.password)
-      if (rememberMe){
-        const currentUser =user.name
-        navigate("/")
-      }else console.log("check 'remember me'or Incorrect email or password")
-    }else {
+    const usersString = localStorage.getItem("user");
+    console.log("user:", usersString);
+
+    if (usersString) {
+      const users = JSON.parse(usersString);
+      console.log("uses:", users);
+     if (users.email == body.email && users.password== body.password)   
+     
+     /* const user = users.find(
+        (item) => item.email == body.email && item.password == body.password
+      );*/
+      if (rememberMe) {
+        const currentUser = users.name;
+        setRememberMe(!rememberMe);
+        navigate("/");
+      } else console.log("check 'Remember Me'or Incorrect email or password");
+    } else {
       console.log("User not found");
     }
-
   };
 
   return (
@@ -95,7 +101,7 @@ function SignIn() {
         </div>
         <div className="flex flex-col h-1/3 items-center justify-center">
           <button className="sign-in-button mt-4 h-8 w-1/2 rounded-2xl bg-red-500 w-90 text text-white">
-            <Link to="/">Sign-in</Link>
+            Sign-in
           </button>
           <div className="divider flex items-center mt-2">
             <div className="w-24 h-1 bg-gray mx-2"></div>
