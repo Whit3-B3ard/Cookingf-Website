@@ -1,11 +1,12 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './registrationForm.css'
-import { Link } from 'react-router-dom';
-
-
-const UserContext = createContext();
+import { UserContext } from '../context/UserContext';
 
 const RegistrationForm = () => {
+
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,11 +14,10 @@ const RegistrationForm = () => {
     logMeIn: false,
   });
 
+  const {setUserState} = useContext(UserContext);
+// console.log('context is', setUserState)
 
-
-  const userContext = useContext(UserContext);
-
-  const handleInputChange = (e) => {
+  const handleInputChange = (e) => {    
     const { name, value, type, checked } = e.target;
     const inputValue = type === 'checkbox' ? checked : value;
 
@@ -27,23 +27,27 @@ const RegistrationForm = () => {
     });
   };
 
-  const handleRegistration = () => {
+  const handleRegistration = (e) => {
+    e.preventDefault()
     const newUser = { ...formData };
-    const storedUsers = localStorage.getItem('users');
-    const users = storedUsers ? JSON.parse(storedUsers) : [];
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
-    userContext.setUsers([...userContext.users, newUser]);
-    userContext.setAuthenticated(true)
-    userContext.setCurrentUser(newUser);
-    setFormData({
-      name: '',
-      email: '',
-      password: '',
-      logMeIn: false,
-    });
 
-    console.log(newUser);
+    localStorage.setItem('user', JSON.stringify(newUser))
+
+    setUserState({...newUser})
+
+    if (formData.logMeIn) navigate('/')
+
+    // userContext.setUsers([...userContext.users, newUser]);
+    // userContext.setAuthenticated(true);
+    // userContext.setCurrentUser(newUser);
+    // setFormData({
+    //   name: '',
+    //   email: '',
+    //   password: '',
+    //   logMeIn: false,
+    // });
+
+    // console.log(newUser);
   };
 
   return (
@@ -68,7 +72,7 @@ const RegistrationForm = () => {
       <i className="fa-brands fa-apple fa-bounce text-blue-900 cursor-pointer mr-8 text-3xl"></i>
       <i className="fa-brands fa-google fa-bounce text-red-600 cursor-pointer text-3xl"></i>
     </div>
-    <form className="mt-4 w-4/5 flex items-center flex-col">
+   <form className="mt-4 w-4/5 flex items-center flex-col">
       <div className="mb-4 w-full ml-16">
         <label className="block">Name:</label>
         <input
@@ -113,14 +117,16 @@ const RegistrationForm = () => {
         <label for="check-5" className="block font-bold"></label>
       </div>
       </div>
-      <div className="mb-4 w-full flex justify-center">
-        <Link to="/"><button
+      <div className="mb-4 w-full flex flex-col relative left-12">
+        <Link to='/'>
+        <button
           type="button"
           onClick={handleRegistration}
-          className="sign-in-button bg-gradient-to-r from-green-400 to-blue-500 w-2/4 h-10 rounded-3xl"
+          className="sign-in-button bg-gradient-to-r from-green-400 to-blue-500 w-2/4 h-10 rounded-3xl relative left-20"
         >
           Register
-        </button></Link>
+        </button>
+        </Link>
       </div>
     </form>
   </div>

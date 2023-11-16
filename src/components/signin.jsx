@@ -1,11 +1,12 @@
 import React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useState,useContext } from "react";
+import { Link, useNavigate} from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 function SignIn() {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+
   //userContext= useContext(userContext)
 
   const handleSignIn = (e) => {
@@ -32,6 +33,7 @@ function SignIn() {
     } else {
       console.log("User not found");
     }
+
   };
 
   return (
@@ -67,19 +69,17 @@ function SignIn() {
             type="email"
             placeholder="Email"
             className="border border-gray-400 text-black w-3/4 h-10 rounded pl-4 focus:border-pink-500 outline-none"
-            //value={email}
-            //onChange={(e) => {
-            //console.log("EMAIL INPUT CHANGED TO:", e.target.value),
-            //     setEmail(e.target.value);
-            //}}
+            //onChange={handleInputChange}
           />
           <input
             name="password"
             type="password"
             placeholder="Password"
+
             className="border  text-black border-gray-400 w-3/4 h-10 rounded mt-8 pl-4 focus:border-pink-500 outline-none"
             // value={password}
             // onChange={(e) => setPassword(e.target.value)}
+
           />
           <div className="flex mt-8 gap-4 items-center">
             <div className="check">
