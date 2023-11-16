@@ -38,7 +38,7 @@ function App() {
           
         </div>
         
-        <div class="w-full md:w-3/5 py-6 text-center">
+        <div class="w-full md:w-3/5 py-2 text-center">
           <img class="w-9/12 h-46 md:w-4/5 z-50 rounded-xl ml-80" src="https://assets.bonappetit.com/photos/6282c9214844aec731451f28/1:1/w_2999,h_3000,c_limit/0622-Summer-Goddess-Chicken-Salad.jpg" />
         </div>
       </div>
@@ -46,7 +46,7 @@ function App() {
     <div class="relative -mt-12 lg:-mt-24">
       
     </div>
-    <section class="bg-white border-b py-8 overflow-x-hidden">
+    <section class="bg-white border-b py-24 overflow-x-hidden">
       <div class="container max-w-5xl mx-auto m-8">
         <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
           Our Chefs!
