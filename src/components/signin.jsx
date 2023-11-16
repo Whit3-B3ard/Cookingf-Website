@@ -6,36 +6,38 @@ import { UserContext } from "../context/UserContext";
 function SignIn() {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
-  const { userState, setUserState } = useContext(UserContext);
+
+  //userContext= useContext(userContext)
+
   const handleSignIn = (e) => {
-    e.perventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    e.preventDefault();
+    const body = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
 
-    if (email === userState.email && password === userState.password) {
-     
-      setUserState((prevState) => ({
-        ...prevState,
-        name: prevState.name, 
-        isAuthenticated: true,
-      }));
+    console.log(body);
 
-      navigate('/');
-    }else {
-     
-      console.log("Incorrect email or password");
+    const usersString = localStorage.getItem("user");
+    console.log("user:", usersString);
+
+    if (usersString) {
+      const users = JSON.parse(usersString);
+      console.log("uses:", users);
+     if (users.email == body.email && users.password== body.password)   
+      if (rememberMe) {
+        const currentUser = users.name;
+        setRememberMe(!rememberMe);
+        navigate("/");
+      } else console.log("check 'Remember Me'or Incorrect email or password");
+    } else {
+      console.log("User not found");
     }
-  
 
-
-
-
-
-    
   };
 
   return (
-    <div>
+    <form onSubmit={handleSignIn}>
       <div className="w-full h-2/4 bg-black flex">
         <div className="flex justify-start flex-1">
           <img
@@ -73,8 +75,11 @@ function SignIn() {
             name="password"
             type="password"
             placeholder="Password"
-            className="border text-black border-gray-400 w-3/4 h-10 rounded mt-8 pl-4 focus:border-pink-500 outline-none"
-            //onChange={handleInputChange}
+
+            className="border  text-black border-gray-400 w-3/4 h-10 rounded mt-8 pl-4 focus:border-pink-500 outline-none"
+            // value={password}
+            // onChange={(e) => setPassword(e.target.value)}
+
           />
           <div className="flex mt-8 gap-4 items-center">
             <div className="check">
@@ -92,7 +97,7 @@ function SignIn() {
         </div>
         <div className="flex flex-col h-1/3 items-center justify-center">
           <button className="sign-in-button mt-4 h-8 w-1/2 rounded-2xl bg-red-500 w-90 text text-white">
-            <Link to="/">Sign-in</Link>
+            Sign-in
           </button>
           <div className="divider flex items-center mt-2">
             <div className="w-24 h-1 bg-gray mx-2"></div>
@@ -103,15 +108,21 @@ function SignIn() {
           </div>
           <button
             className="sign-up-button bg-red-500 mt-4 mb-8 h-8 w-1/2 text text-white rounded-2xl"
-            onClick={handleSignIn}
+            type="submit"
           >
             {" "}
             <Link to="/register">Sign Up</Link>
           </button>
         </div>
       </main>
-    </div>
+    </form>
   );
 }
 
 export default SignIn;
+/**
+ * 
+ *   const user = users.find(
+        (item) => item.email == body.email && item.password == body.password
+      )
+ */
