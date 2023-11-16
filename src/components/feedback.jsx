@@ -36,11 +36,11 @@ export default function Feedback() {
 
 
   return (
-    <div className="absolute mt-52 ml-48 w-80 float-left border-2 p-2 rounded-xl shadow-xl text-xl bg-slate-800">
+    <div className="absolute mt-52 ml-48 w-80 float-left border-2 p-2 rounded-xl shadow-xl text-xl bg-gradient-to-r from-cyan-800 to-indigo-600">
       <form>
-        <p className="text-2xl text-red-600">Feedback & Queries</p>
+        <p className="text-2xl text-white">Feedback & Queries</p>
         <div>
-          <label className="text-sm text-red-600">Select Issue*</label>
+          <label className="text-sm text-white">Select Issue*</label>
           <br></br>
           <select
             className="bg-gray-50 border border-gray-300 
@@ -58,7 +58,7 @@ export default function Feedback() {
             <option value="Feedback">Advertise With Us</option>
           </select>
           <br></br>
-          <label className="text-sm text-red-600">Email Address*</label>
+          <label className="text-sm text-white">Email Address*</label>
           <br></br>
           <input
             className="bg-gray-50 border border-gray-300 
@@ -72,7 +72,7 @@ export default function Feedback() {
             value={feedback.email}
           />
           <br></br>
-          <label className="text-sm  text-red-600">Contact No.</label>
+          <label className="text-sm  text-white">Contact No.</label>
           <br></br>
           <input
             className="bg-gray-50 border border-gray-300 
@@ -85,7 +85,7 @@ export default function Feedback() {
             value={feedback.contactNo}
           />
           <br></br>
-          <label className="text-sm  text-red-600">Drop Your Query</label>
+          <label className="text-sm  text-white">Drop Your Query</label>
           <br></br>
           <textarea
             className="bg-gray-50 border border-gray-300 

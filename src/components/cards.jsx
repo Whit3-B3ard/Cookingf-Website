@@ -3,9 +3,9 @@ export default function Card() {
     <div>
       <div
         className="h-52 w-1/3 ml-48 float-left 
-							-mt-10  flex-col 
-							rounded-xl bg-slate-800 bg-clip-border 
-							text-red-600 shadow-2xl"
+        -mt-10 flex-col rounded-xl 
+        bg-gradient-to-r from-violet-600 to-indigo-600 
+        text-white shadow-2xl"
       >
         <div className="p-6">
           <h5
@@ -42,9 +42,10 @@ export default function Card() {
         </div>
       </div>
       <div
-        class=" mr-48 w-1/3 text-center float-right 
-						-mt-11 w-1/3 flex-col rounded-xl 
-						bg-slate-800 text-red-600 shadow-2xl"
+        className=" mr-48 w-1/3 text-center float-right 
+        -mt-11 flex-col rounded-xl 
+        bg-gradient-to-r from-green-600 to-teal-600 
+        text-white shadow-2xl"
       >
         <div className="p-6 ">
           <h5

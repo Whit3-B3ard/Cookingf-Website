@@ -2,7 +2,7 @@ import React from "react";
 import { useState,useContext } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-
+import '../pages/registrationForm.css'
 function SignIn() {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ function SignIn() {
           />
         </div>
       </div>
-      <main className="absolute w-1/4 h-3/5 top-52 left-1/2 transform -translate-x-1/2 bg-slate-800 rounded-3xl shadow-lg flex flex-col text-white">
+      <main className="absolute w-1/4 h-3/5 top-52 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-teal-600 via-zinc-700 to-teal-600  rounded-3xl shadow-lg flex flex-col text-white">
         <div className="flex h-1/3 flex-col items-center">
           <h1 className="mt-8 text-2xl font-bold">Sign In</h1>
           <div className="mt-8 flex flex-wrap gap-8 text-4xl">
@@ -82,22 +82,27 @@ function SignIn() {
 
           />
           <div className="flex mt-8 gap-4 items-center">
-            <div className="check">
-              <input
-                id="check-5"
-                type="checkbox"
-                className=""
-                checked={rememberMe}
-                onChange={() => setRememberMe(!rememberMe)}
-              />
-              <label htmlFor="check-5" className="check-label"></label>
-            </div>
+          <div className="checkbox-wrapper-5">
+      <div className="check mb-4">
+        <input
+          type="checkbox"
+          id='check-5'
+          name="logMeIn"
+          checked={rememberMe}
+           onChange={() => setRememberMe(!rememberMe)}
+          
+        />
+        <label for="check-5" className="block font-bold"></label>
+      </div>
+      </div>
             <h1 className="text-1.2rem mb-2">Remember Me</h1>
           </div>
         </div>
         <div className="flex flex-col h-1/3 items-center justify-center">
-          <button className="sign-in-button mt-4 h-8 w-1/2 rounded-2xl bg-red-500 w-90 text text-white">
-            Sign-in
+
+          <button className="sign-in-button mt-4 h-8 w-1/2 rounded-2xl bg-red-500 w-90 text text-white font-bold">
+            <Link to="/">Sign-in</Link>
+
           </button>
           <div className="divider flex items-center mt-2">
             <div className="w-24 h-1 bg-gray mx-2"></div>
@@ -107,8 +112,10 @@ function SignIn() {
             <div className="w-24 h-1 bg-gray mx-2"></div>
           </div>
           <button
-            className="sign-up-button bg-red-500 mt-4 mb-8 h-8 w-1/2 text text-white rounded-2xl"
-            type="submit"
+
+            className="sign-up-button bg-red-500 mt-4 mb-8 h-8 w-1/2 text text-white rounded-2xl font-bold"
+            onClick={handleSignIn}
+
           >
             {" "}
             <Link to="/register">Sign Up</Link>
